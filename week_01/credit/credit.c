@@ -16,8 +16,11 @@ int main(void) {
     else{
         printf("INVALID\n");
     }
+   
 
-}
+    }
+    
+
 int card_sum(long n){
     int digit_sum = 0;
     while (n > 0){
@@ -33,7 +36,7 @@ int card_sum(long n){
         digit_sum += second_last;
         n /= 10;
     }
-    return digit_sum % 10;
+    return digit_sum % 10 == 0;
 
 }
 
@@ -47,11 +50,12 @@ int digit_checker(long n){
 }
 
 char *card_type(long n){
+    long orig = n;
         while (n > 100){
             n/=10;
         }
         if(n == 34 || n ==37){
-            if (digit_checker(n) ==15){
+            if (digit_checker(orig) ==15){
                 return "AMEX";
             }
             else{
@@ -60,7 +64,7 @@ char *card_type(long n){
         
         }
         else if (n >= 51 && n <= 55){
-            if (digit_checker(n) ==16){
+            if (digit_checker(orig) ==16){
                 return "MASTERCARD";
             }
             else{
@@ -68,7 +72,7 @@ char *card_type(long n){
             }
         }
         else if (n/10 == 4){
-            if (digit_checker(n) ==13 || digit_checker(n) == 16){
+            if (digit_checker(orig) ==13 || digit_checker(orig) == 16){
                 return "VISA";
             }
             else{
