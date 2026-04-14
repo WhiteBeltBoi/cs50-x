@@ -1,15 +1,14 @@
 #include <stdio.h>
 int card_sum(long);
 char *card_type(long);
+int digit_checker(long);
 
 int main(void) {
     long card_number;
     printf("Number: ");
     scanf("%ld",&card_number);
 
-    int my_sum = card_sum(card_number);
-    
-    if (my_sum % 10 == 0){
+    if (card_sum(card_number)){
         char *str = card_type(card_number);
         printf("%s\n", str);
 
@@ -18,9 +17,7 @@ int main(void) {
         printf("INVALID\n");
     }
 
-   
-
-}   
+}
 int card_sum(long n){
     int digit_sum = 0;
     while (n > 0){
@@ -36,23 +33,47 @@ int card_sum(long n){
         digit_sum += second_last;
         n /= 10;
     }
-    return digit_sum;
-    
+    return digit_sum % 10;
+
+}
+
+int digit_checker(long n){
+    int digits = 0;
+    while (n > 0){
+        n /= 10;
+        digits += 1;
+    }
+    return digits;
 }
 
 char *card_type(long n){
-        while (n > 10){
+        while (n > 100){
             n/=10;
         }
-        int first_digit = n % 10;
-        if (first_digit == 4){
-            return "Visa";
+        if(n == 34 || n ==37){
+            if (digit_checker(n) ==15){
+                return "AMEX";
+            }
+            else{
+                return "INVALID";
+            }
+        
         }
-        else if(first_digit == 3){
-            return "American Express";
+        else if (n >= 51 && n <= 55){
+            if (digit_checker(n) ==16){
+                return "MASTERCARD";
+            }
+            else{
+                return "INVALID";
+            }
         }
-        else if(first_digit == 5){
-            return "MasterCard";
+        else if (n/10 == 4){
+            if (digit_checker(n) ==13 || digit_checker(n) == 16){
+                return "VISA";
+            }
+            else{
+                return "INVALID";
+            }
         }
         else{
             return "INVALID";
