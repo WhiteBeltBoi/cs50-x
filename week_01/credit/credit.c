@@ -4,7 +4,7 @@ char *card_type(long);
 int digit_checker(long);
 
 int main(void) {
-    long card_number;
+    long  card_number;
     printf("Number: ");
     scanf("%ld",&card_number);
 
@@ -28,7 +28,7 @@ int card_sum(long n){
         digit_sum += n % 10;
         n /= 10;
         int second_last = (n % 10) *2 ;
-        if (second_last > 10){
+        if (second_last >= 10){
             int temp = second_last % 10;
             temp += (second_last /10) % 10;
             second_last = temp;
@@ -63,7 +63,7 @@ char *card_type(long n){
             }
         
         }
-        else if (n >= 51 && n <= 55){
+        else if (n >= 51 && n <=55 ){
             if (digit_checker(orig) ==16){
                 return "MASTERCARD";
             }
