@@ -10,15 +10,15 @@ int main(void){
         }
     }
 
-    for (int i = 1; i < height+1; i++){
-        for (int j = height; j > i; j--){
+    for (int i = 0; i < height; i++){
+        for (int j = height; j >= i; j--){
             printf(" ");
         }
-        for (int left = 1; left < i+1; left++){
+        for (int left = 0; left <= i; left++){
             printf("#");
         }
         printf("  ");
-        for (int right = 1; right < i+1; right ++){
+        for (int right = 0; right <= i; right ++){
             printf("#");        
         }
         printf("\n");
