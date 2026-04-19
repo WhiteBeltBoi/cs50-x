@@ -24,7 +24,7 @@ int main(void){
 int grader(string my_sentence){
     int letter_counter = 0;
     int sentence_counter = 0;
-    int word_counter = 0;
+    int word_counter = 1;
     for (int i = 0, n = strlen(my_sentence); i < n; i++){
         if (isalpha(my_sentence[i])){
             letter_counter += 1;
