@@ -21,17 +21,17 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
 {
     for (int i = 0; i < height; i++){
         for (int j = 0; j < width; j++){
-            int sepiaRed = round(0.393 * image[i][j].rgbtRed) + (0.769 * image[i][j].rgbtGreen) + (0.189 * image[i][j].rgbtBlue);
+            int sepiaRed = round(0.393 * image[i][j].rgbtRed + 0.769 * image[i][j].rgbtGreen + 0.189 * image[i][j].rgbtBlue);
             if(sepiaRed > 255){
                 sepiaRed = 255;
             }
 
-            int sepiaGreen = round(0.349 * image[i][j].rgbtRed) +(0.686 * image[i][j].rgbtGreen) +(0.168 * image[i][j].rgbtBlue);
+            int sepiaGreen = round(0.349 * image[i][j].rgbtRed +0.686 * image[i][j].rgbtGreen +0.168 * image[i][j].rgbtBlue);
             if(sepiaGreen > 255){
                 sepiaGreen = 255;
             }
 
-            int sepiaBlue  = round(0.272 * image[i][j].rgbtRed) +(0.534 * image[i][j].rgbtGreen) +(0.131 * image[i][j].rgbtBlue);
+            int sepiaBlue  = round(0.272 * image[i][j].rgbtRed +0.534 * image[i][j].rgbtGreen +0.131 * image[i][j].rgbtBlue);
             if(sepiaBlue  > 255){
                 sepiaBlue  = 255;
             }
@@ -81,8 +81,8 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             float counter = 0;
             for(int h = -1; h <=1; h++){
                 if (i-h >= 0 && i+h < height){
-                    for (int w = 1; w <=1; w++){
-                        if (j-1 >=0 && j+w < width){
+                    for (int w = -1; w <=1; w++){
+                        if (j-w >=0 && j+w < width){
                             sum_red+= copy[i+h][j+w].rgbtRed;
                             sum_green += copy[i+h][j+w].rgbtGreen;
                             sum_blue+= copy[i+h][j+w].rgbtBlue;
